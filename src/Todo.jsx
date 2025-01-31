@@ -4,14 +4,22 @@ import plus from "./../../images/plus.svg" ;
 import './Todo.css';
 
 function Todo() {
-  const  [todolist,settodolist]=useState(["Go to College"]);
- const [newtodo,setnewtodo]=useState([""]);
+ const  [todolist,settodolist]=useState([]);
+ const [newtodo,setnewtodo]=useState("");
 
-  let additem=()=>{
-    settodolist([...todolist,newtodo]);
-    setnewtodo("") 
-    toast.success("Task Added successfully !")
-  }
+ let additem=()=>{
+  
+    if (newtodo===""){
+      toast.error("Task Not Added Please Add Task...")
+      return
+    }
+    {
+      settodolist([...todolist,newtodo]);
+      setnewtodo("") 
+      toast.success("Task Added successfully !")
+    }
+
+}
  
  let update=(event)=>{
   setnewtodo(event.target.value);
@@ -24,13 +32,21 @@ function Todo() {
         <h1 className='todo-title'>Todo List📝</h1>
         <div className='container'>
           <p className='name'>List items...</p>
-         {
+
+          {
+
           todolist.map((todos)=>{
             return(
+              <>
+              
             <h3 className='items'>{todos}</h3>
+            
+            </>
           )
           })
-         }
+        }
+         
+        
 
         </div>
 
@@ -45,10 +61,14 @@ function Todo() {
 
             <img src={plus} 
             className='add-btn'
-            onClick={additem} />
+            onClick={additem} 
+            
+            />
             
           </>
         </div>
+        
+          
         <Toaster/>
     </div>
     </>
