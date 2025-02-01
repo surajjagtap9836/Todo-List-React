@@ -1,5 +1,4 @@
-
-import Todo from './todo.jsx'
+import Todo from "./todo"
 
 function App() {
   return (
