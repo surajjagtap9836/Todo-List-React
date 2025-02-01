@@ -6,6 +6,16 @@ import './Todo.css';
 function Todo() {
  const  [todolist,settodolist]=useState([]);
  const [newtodo,setnewtodo]=useState("");
+ const[category,setcategory]=useState("")
+ 
+ const icon={
+  Learning:"📖",
+  Health:"🏃‍♂️",
+  work:"💼",
+  personal:"🏡",
+  other:"🎥"
+}
+ 
 
  let additem=()=>{
   
@@ -13,17 +23,27 @@ function Todo() {
       toast.error("Task Not Added Please Add Task...")
       return
     }
+    if (category===""){
+      toast.error("select catogory...")
+      return
+    }
+      
     {
-      settodolist([...todolist,newtodo]);
+      settodolist([...todolist,{task:newtodo,category:category}]);
       setnewtodo("") 
+      setcategory("")
       toast.success("Task Added successfully !")
     }
 
 }
- 
+ let select=(event)=>{
+ setcategory(event.target.value)
+
+ }
  let update=(event)=>{
   setnewtodo(event.target.value);
  }
+ 
 
   return (
     <>
@@ -36,13 +56,14 @@ function Todo() {
           {
 
           todolist.map((todos)=>{
-            return(
-              <>
+            const{task ,category}=todos;
+          
+            return(<div className='return'>
+            <h3 className='items'> {task}
               
-            <h3 className='items'>{todos}</h3>
-            
-            </>
-          )
+            <span className='category'>{icon[category]} {category}</span>
+              </h3>
+              </div>)
           })
         }
          
@@ -58,18 +79,33 @@ function Todo() {
             value={newtodo}
             onChange={update} />
 
+            <select 
+            className='select'
+            value={category}
+            onChange={select}>
+
+            <option value={""}>Select category</option>
+              <option value={"Learning"}>Learning</option>
+              <option value={"Health"}>Health</option>
+              <option value={"work"}>work</option>
+              <option value={"personal"}>personal</option>
+              <option value={"others"}>others</option>
+
+            </select  >
+
 
             <img src={plus} 
             className='add-btn'
             onClick={additem} 
             
             />
-            
+            <Toaster/>
           </>
+          
         </div>
         
           
-        <Toaster/>
+        
     </div>
     </>
   )
