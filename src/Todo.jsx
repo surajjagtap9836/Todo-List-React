@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import toast,  { Toaster} from 'react-hot-toast'
-import plus from '../../images/plus.svg'
+// import plus from '../../images/plus.svg'
+import plus from '/../images/plus.svg'
+//import plus from "../images/plus.svg"; 
+
 import './Todo.css';
 
 function Todo() {
