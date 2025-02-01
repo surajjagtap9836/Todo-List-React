@@ -66,9 +66,7 @@ function Todo() {
               </div>)
           })
         }
-         
-        
-
+      
         </div>
 
         <div className='input'>
