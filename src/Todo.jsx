@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import toast,  { Toaster} from 'react-hot-toast'
-// import plus from '../../images/plus.svg'
+import { v4 as uuidv4 } from 'uuid';
+import bin from './images/bin.png'
 import plus from './images/plus.svg'
-//import plus from "../images/plus.svg"; 
+ 
 
 import './Todo.css';
 
@@ -32,7 +33,7 @@ function Todo() {
     }
       
     {
-      settodolist([...todolist,{task:newtodo,category:category}]);
+      settodolist([...todolist,{task:newtodo,category:category,id:uuidv4()}]);
       setnewtodo("") 
       setcategory("")
       toast.success("Task Added successfully !")
@@ -47,6 +48,14 @@ function Todo() {
   setnewtodo(event.target.value);
  }
  
+ let deleteitem=(id)=>{
+    let copy=todolist.filter((eid)=>eid.id!=id)
+    settodolist(copy);
+    
+    
+    
+  
+ }
 
   return (
     <>
@@ -60,12 +69,19 @@ function Todo() {
 
           todolist.map((todos)=>{
             const{task ,category}=todos;
+            
           
-            return(<div className='return'>
-            <h3 className='items'> {task}
-              
+            return(<div className='return'key={todos.id}>
+             
+            <h2 className='items' > 
+              <img src={bin} 
+              className='bin'
+               onClick={()=>deleteitem(todos.id)}
+               />
+
+              <span className='span'>{task}</span>
             <span className='category'>{icon[category]} {category}</span>
-              </h3>
+              </h2>
               </div>)
           })
         }

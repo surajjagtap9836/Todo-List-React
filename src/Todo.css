@@ -46,6 +46,7 @@ background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
 .items{
     border: 1px solid black;
    padding: 10px 10px;
+   color: black;
    border-radius: 10px;
    margin: 15px 10px;
    background-color: aqua;
@@ -66,6 +67,8 @@ background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
     font-size: 20px;
 }
 
+
+
 .category{
     position: absolute;
     right: 25px;
@@ -74,8 +77,45 @@ background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
     font-size: 15px;
     padding: 8px 10px;
     border-radius: 10px;
-    width: 90px;
+    width: 100px;
     text-align: center;
     border: 2px solid white;
     
+}
+@keyframes binanimation{
+    0%{
+        transform: rotate(-25deg);
+    }
+    25%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(25deg);
+    }
+    75%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-25deg);
+    }
+}
+
+
+
+
+.bin{
+    height: 25px;
+    margin: 2px 5px;
+    
+    
+
+}
+.bin:hover{
+    animation: binanimation;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+
+}
+.span{
+    margin-left: 15px;
 }
